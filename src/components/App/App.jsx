@@ -3,26 +3,12 @@ import SearchBar from '../SearchBar/SearchBar'
 import ContactList from '../ContactList/ContactList'
 import Layout from '../Layout/Layout'
 import { useSelector } from 'react-redux'
-import css from '../App/App.module.css'
-import { useEffect, useState } from 'react'
 import { fetchContacts } from '../../data/contacts-api'
+import css from '../App/App.module.css'
 
 function App() {
-  const [contacts, setContacts] = useState([]);
   const users = useSelector(state => state.contacts.items);
 
-  useEffect(() => {
-    const getContacts = async () => {
-      try {
-        const contactsData = await fetchContacts();
-        console.log(contactsData)
-        setContacts(contactsData);
-      } catch (error) {
-        console.log('Error:', error)
-      }
-    }
-    getContacts();
-  }, [])
   return (
     <Layout>
       <section className={css.phonebook}>
