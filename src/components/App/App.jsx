@@ -2,12 +2,22 @@ import ContactForm from '../ContactForm/ContactForm'
 import SearchBar from '../SearchBar/SearchBar'
 import ContactList from '../ContactList/ContactList'
 import Layout from '../Layout/Layout'
-import { useSelector } from 'react-redux'
-import { fetchContacts } from '../../data/contacts-api'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectIsLoading, selectError } from '../../redux/selectors'
+import { fetchContacts } from '../../redux/contactsOps'
+import { useEffect } from 'react'
+import Loader from '../Loader/Loader'
 import css from '../App/App.module.css'
 
 function App() {
   const users = useSelector(state => state.contacts.items);
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <Layout>
@@ -24,7 +34,8 @@ function App() {
             <>
               <h3>Your phonebook has {users.length} contacts</h3>
               <SearchBar />
-              <ContactList contacts={contacts} />
+              {isLoading && !error && (<Loader />)}
+              <ContactList />
             </>
           )}
         </div>

@@ -2,9 +2,9 @@ import { useId } from "react";
 import { Formik, Field, Form } from "formik";
 import { ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { nanoid } from 'nanoid';
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsSlice";
+// import { selectContacts } from '../../redux/selectors';
+import { addContact } from "../../redux/contactsOps";
 import css from "./ContactForm.module.css";
 
 
@@ -13,6 +13,7 @@ export default function ContactForm() {
   const phoneFieldId = useId();
 
   const dispatch = useDispatch();
+  // const contacts = useSelector(selectContacts);
 
   const ContactFormSchema = Yup.object().shape({
     username: Yup.string().min(3, "Too Short!")
@@ -22,9 +23,8 @@ export default function ContactForm() {
 
   const handleSubmit = (values, actions) => {
     dispatch(addContact({
-      id: nanoid(),
       name: values.username,
-      number: values.phonenumber
+      phone: values.phonenumber
     }))
     actions.resetForm();
   }
