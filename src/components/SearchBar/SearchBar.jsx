@@ -1,9 +1,8 @@
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { filterContacts } from '../../redux/filtersSlice'
 import css from './SearchBar.module.css'
 
 export default function SearchBar() {
-  const value = useSelector(state => state.filterr);
   const dispatch = useDispatch();
 
   const handleSearch = (event) => {
@@ -15,7 +14,7 @@ export default function SearchBar() {
       <p>Find contacts by name</p>
       <input type="text"
         className={css.input}
-        value={value}
+        name='filter'
         onChange={handleSearch} />
     </div>
   )
