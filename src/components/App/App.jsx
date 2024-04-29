@@ -1,5 +1,5 @@
 import ContactForm from '../ContactForm/ContactForm'
-import SearchBar from '../SearchBar/SearchBar'
+import SearchBox from '../SearchBox/SearchBox'
 import ContactList from '../ContactList/ContactList'
 import Layout from '../Layout/Layout'
 import { useDispatch, useSelector } from 'react-redux'
@@ -33,7 +33,7 @@ function App() {
           ) : (
             <>
               <h3>Your phonebook has {users.length} contacts</h3>
-              <SearchBar />
+              <SearchBox />
               {isLoading && !error && (<Loader />)}
               <ContactList />
             </>
