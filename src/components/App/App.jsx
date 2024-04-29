@@ -3,7 +3,7 @@ import SearchBox from '../SearchBox/SearchBox'
 import ContactList from '../ContactList/ContactList'
 import Layout from '../Layout/Layout'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectIsLoading, selectError } from '../../redux/selectors'
+import { selectLoading, selectError } from '../../redux/contactsSlice'
 import { fetchContacts } from '../../redux/contactsOps'
 import { useEffect } from 'react'
 import Loader from '../Loader/Loader'
@@ -12,7 +12,7 @@ import css from '../App/App.module.css'
 function App() {
   const users = useSelector(state => state.contacts.items);
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectLoading);
   const error = useSelector(selectError);
 
   useEffect(() => {

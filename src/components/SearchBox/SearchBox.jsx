@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux'
-import { filterContacts } from '../../redux/filtersSlice'
+import { changeFilter } from '../../redux/filtersSlice'
 import css from './SearchBox.module.css'
 
 export default function SearchBar() {
   const dispatch = useDispatch();
 
   const handleSearch = (event) => {
-    dispatch(filterContacts(event.target.value));
+    dispatch(changeFilter(event.target.value));
   }
 
   return (
