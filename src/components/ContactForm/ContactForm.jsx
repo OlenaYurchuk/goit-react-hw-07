@@ -3,7 +3,6 @@ import { Formik, Field, Form } from "formik";
 import { ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-// import { selectContacts } from '../../redux/selectors';
 import { addContact } from "../../redux/contactsOps";
 import css from "./ContactForm.module.css";
 
@@ -13,7 +12,6 @@ export default function ContactForm() {
   const phoneFieldId = useId();
 
   const dispatch = useDispatch();
-  // const contacts = useSelector(selectContacts);
 
   const ContactFormSchema = Yup.object().shape({
     username: Yup.string().min(3, "Too Short!")

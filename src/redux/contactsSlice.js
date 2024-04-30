@@ -1,16 +1,15 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import { fetchContacts, addContact, deleteContact } from './contactsOps';
 
-const initialState = {
+
+const contactsSlice = createSlice({
+  name: "contacts",
+  initialState: {
   items: [],
   loading: false,
   error: null,
   nameFilter: "",
-};
-
-const contactsSlice = createSlice({
-  name: "contacts",
-  initialState,
+},
   reducers: {
     setNameFilter(state, action) {
       state.nameFilter = action.payload;
@@ -39,6 +38,7 @@ const contactsSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.items.push(action.payload);
+        console.log("Payload:", action.payload);
       })
       .addCase(addContact.rejected, (state, action) => {
         state.loading = false;
